@@ -6,12 +6,10 @@ public class OnUIClick : MonoBehaviour {
 
 	// public bool hasBeenClicked;
 	
-	private ManageFlagInstantiation flagManager;
 	private ClickManager clickManager;
 
 	void Start() {
-		flagManager = ManageFlagInstantiation.instance;
-
+		clickManager = ClickManager.instance;
 	}
 
 	public void RedFlagButtonClick() {

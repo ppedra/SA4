@@ -34,7 +34,7 @@ public class BasicMoviment : MonoBehaviour {
 		// }
 	}
 
-	public void PlayerMoveTo(Vector2 worldPoint){
+	public Coroutine PlayerMoveTo(Vector2 worldPoint){
 		RaycastHit2D hit = Physics2D.Raycast(worldPoint, Vector2.zero,100,5);
 		if (hit){
 			Debug.Log(hit.collider.gameObject.name);
@@ -45,9 +45,12 @@ public class BasicMoviment : MonoBehaviour {
 				}
 				//then move
 				coroutine = MoveToPosition(worldPoint);
-				StartCoroutine(coroutine);
+				return StartCoroutine(coroutine);
 			}
 		}
+
+		Debug.LogError("raycast missed the ground. ops...");
+		return null;
 	}
 
 	private IEnumerator MoveToPosition (Vector3 target){
@@ -61,6 +64,10 @@ public class BasicMoviment : MonoBehaviour {
 
 			yield return null; //skip a frame
 		}
+	}
+
+	public void StopCoroutinesHere(){
+		StopAllCoroutines();
 	}
 
 }
