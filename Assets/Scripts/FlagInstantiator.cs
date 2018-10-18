@@ -23,8 +23,11 @@ public class FlagInstantiator : MonoBehaviour {
 	public void InstantiateFlag(FlagColor color,Vector2 pos){
 		if (color == FlagColor.red){
 			Instantiate(redFlagPrefabToInstantiate,pos,Quaternion.identity);
+		}else if (color == FlagColor.green){
+			Instantiate(greenFlagPrefabToInstantiate,pos,Quaternion.identity);
+		}else if (color == FlagColor.yellow){
+			Instantiate(yellowPlagPrefabToInstantiate,pos,Quaternion.identity);
 		}else{
-			//TODO: another flags!
 			Debug.LogError("Should never me here. Where? " + this.name);
 		}
 	}

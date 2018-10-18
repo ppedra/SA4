@@ -43,12 +43,22 @@ public class ClickManager : MonoBehaviour {
 		if (Input.GetMouseButtonDown(0)){
 			Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-			if (redFlagClicked){
+			bool isTouchOverUi = EventSystem.current.IsPointerOverGameObject(0);
+			//for the mouse:
+			// isTouchOverUi = isTouchOverUi && EventSystem.current.IsPointerOverGameObject();
+
+			if (redFlagClicked && !isTouchOverUi){
 				//place flag
 				Debug.Log("Move Player to place the flag!");
 				MovePlayerToPlaceFlag(FlagColor.red,worldPoint);
-
-			} else if (!EventSystem.current.IsPointerOverGameObject()){
+				
+			} else if (greenFlagClicked && !isTouchOverUi){
+				//place flag
+				Debug.Log("Move Player to place the flag!");
+				MovePlayerToPlaceFlag(FlagColor.green,worldPoint);
+				
+				
+			} else if (!isTouchOverUi) {
 				//lifeguard walk if mouse/click is not over the ui
 				Debug.Log("Move Player!");
 				playerMoviment.PlayerMoveTo(worldPoint);
@@ -74,24 +84,52 @@ public class ClickManager : MonoBehaviour {
 		flagManager.InstantiateFlag(color,worldPoint);
 
 		yield return null;
-		this.RedFlagButtonClick();
+		// this.RedFlagButtonClick();
+		ResetAllFlagClickedButThis(color);
+	}
+
+	private void ReclickRespectiveFlag(FlagColor color){
+		if (color == FlagColor.red){
+			RedFlagButtonClick();
+		}else if (color == FlagColor.green){
+			GreenFlagButtonClick();
+		}else if (color == FlagColor.yellow){
+			YellowFlagButtonClick();
+		}
+	}
+
+	private void ResetAllFlagClickedButThis(FlagColor color){
+		if (color == FlagColor.red){
+			redFlagClicked = !redFlagClicked;
+			yellowFlagClicked = false;
+			greenFlagClicked = false;
+		}else if (color == FlagColor.green){
+			redFlagClicked = false;
+			yellowFlagClicked = false;
+			greenFlagClicked = !greenFlagClicked;
+		}else if (color == FlagColor.yellow){
+			redFlagClicked = false;
+			yellowFlagClicked = !yellowFlagClicked;
+			greenFlagClicked = false;
+		}
 	}
 
 	#region FlagBoolSetters
 	public void RedFlagButtonClick(){
 		redFlagClicked = !redFlagClicked;
-		Debug.Log("redFlagClicked:" + redFlagClicked);
+		// ResetAllFlagClickedButThis(FlagColor.red);
+		// Debug.Log("redFlagClicked:" + redFlagClicked);
 	}
 	public void GreenFlagButtonClick() {
 		greenFlagClicked = !greenFlagClicked;
-		Debug.Log("greenFlagClicked:" + greenFlagClicked);
-
+		// Debug.Log("greenFlagClicked:" + greenFlagClicked);
 	}
-	
 	public void YellowFlagButtonClick() {
 		yellowFlagClicked = !yellowFlagClicked;
-		Debug.Log("yellowFlagClicked:" + yellowFlagClicked);
-
+		// Debug.Log("yellowFlagClicked:" + yellowFlagClicked);
+	}
+	public void FlagButtonClick(FlagColor color){
+		ResetAllFlagClickedButThis(color);
 	}
 	#endregion
 

@@ -13,15 +13,20 @@ public class OnUIClick : MonoBehaviour {
 	}
 
 	public void RedFlagButtonClick() {
-		clickManager.RedFlagButtonClick();
+		// clickManager.RedFlagButtonClick();
+		clickManager.FlagButtonClick(Utils.FlagColor.red);
+
 	}
 	
 	public void GreenFlagButtonClick() {
-		clickManager.GreenFlagButtonClick();
+		// clickManager.GreenFlagButtonClick();
+		clickManager.FlagButtonClick(Utils.FlagColor.green);
 	}
 	
 	public void YellowFlagButtonClick() {
-		clickManager.YellowFlagButtonClick();
+		// clickManager.YellowFlagButtonClick();
+		clickManager.FlagButtonClick(Utils.FlagColor.yellow);
+
 	}
 
 
