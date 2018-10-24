@@ -38,7 +38,6 @@ public class ClickManager : MonoBehaviour {
 		playerMoviment = playerGameObject.GetComponent<BasicMoviment>();
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		if (Input.GetMouseButtonDown(0)){
 			Vector2 worldPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -61,7 +60,7 @@ public class ClickManager : MonoBehaviour {
 			} else if (!isTouchOverUi) {
 				//lifeguard walk if mouse/click is not over the ui
 				Debug.Log("Move Player!");
-				playerMoviment.PlayerMoveTo(worldPoint);
+				playerMoviment.MoveToPosition(worldPoint);
 			}
 		}
 	}
@@ -77,7 +76,7 @@ public class ClickManager : MonoBehaviour {
 
 	IEnumerator MovePlayerToPlaceFlagCoroutine(FlagColor color,Vector2 worldPoint){
 		//wait for move player to position
-		yield return playerMoviment.PlayerMoveTo(worldPoint);
+		yield return playerMoviment.MoveToPosition(worldPoint);
 		//skip a frame
 		yield return null;
 		
