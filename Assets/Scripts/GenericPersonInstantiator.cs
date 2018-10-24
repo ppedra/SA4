@@ -12,23 +12,22 @@ public class GenericPersonInstantiator : MonoBehaviour {
 	// [Space(10)]
 	[Header("Areas to instantiate")]
 	private GameObject[] placesToInstantiate;
-	public GameObject leftAreaToInstantiate;
-	public GameObject rightAreaToInstantiate;
-	public GameObject middleAreaToInstantiate;
+	// public GameObject leftAreaToInstantiate;
+	// public GameObject rightAreaToInstantiate;
+	// public GameObject middleAreaToInstantiate;
 
 	void Start () {
-		GameObject[] objs = {leftAreaToInstantiate,rightAreaToInstantiate,middleAreaToInstantiate};
+		GameObject[] objs = GameObject.FindGameObjectsWithTag("AreasToInstantiate");	
 		areas = new AreaScript[objs.Length];
 		for (int i = 0; i < objs.Length; i++){
 			areas[i] = objs[i].GetComponent<AreaScript>();
 		}
+		
 		Debug.Log("AreaScript.lenght= " + areas.Length);
-
 		for (int i = 0; i < areas.Length; i++){
 			Debug.Log(areas[i].gameObject.name);
+			Debug.Log(areas[i].GetRandomPositionInsideArea());
 		}
-
-
 		
 		gpParent = GameObject.Find("Humanity");
 		
