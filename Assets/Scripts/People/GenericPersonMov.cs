@@ -13,8 +13,12 @@ public class GenericPersonMov : MonoBehaviour {
 
 	IEnumerator coroutine;
 
-	public Vector3 initialPosition;
-	public Vector3 finalPosition;
+	Vector3 initialPosition;
+	Vector3 finalPosition;
+
+	[Header("Whistle Test")]
+	public bool hasBeenWhistle;
+
 
 	private void Awake() {
 		//on start is one frame too late
@@ -23,6 +27,13 @@ public class GenericPersonMov : MonoBehaviour {
 
 	void Start() {
 		speed = speed + Random.Range(-randomRange,randomRange);
+	}
+
+	private void Update() {
+		if (hasBeenWhistle){
+			HitByWhistle();
+			hasBeenWhistle = false;
+		}
 	}
 
 	///<summary>
@@ -36,8 +47,9 @@ public class GenericPersonMov : MonoBehaviour {
 		this.transform.position = positions[0];
 		shouldBeMoving = true;
 		MoveToPosition(positions[1]);
-
 	}
+
+	#region WalkMoviment
 	///<summary>
 	/// manage MoveToPositionCoroutine coroutine. 
 	///</summary>
@@ -48,9 +60,7 @@ public class GenericPersonMov : MonoBehaviour {
 		}
 		coroutine = MoveToPositionCoroutine(worldPoint);
 		return StartCoroutine(coroutine);
-		
 	}
-
 
 	///<summary>
 	/// Coroutine to move GameObject to target
@@ -67,8 +77,34 @@ public class GenericPersonMov : MonoBehaviour {
 		}
 		shouldBeMoving = false;
 	}
+	#endregion
 
+	private IEnumerator WhistleCoroutine (){
+		//anim of shock or something
+		Debug.Log("WHISTLE!!");
+		//wait time
+		yield return new WaitForSeconds(3f);
+		
+		//return to moveToPositionCoroutine
+		IEnumerator co = MoveToPositionCoroutine(finalPosition);
+		StartCoroutine(co);
+	}
+
+	///<summary>
+	/// stop walking coroutine, start whistle animation and resume walking
+	///</summary>
+	public void HitByWhistle(){
+		if (coroutine != null){
+			StopCoroutine(coroutine);
+		}
+		coroutine = WhistleCoroutine();
+		StartCoroutine(coroutine);
+		print("depois do whistlecoroutinestart");
+	
+	}
+	
 	public void StopCoroutinesHere(){
 		StopAllCoroutines();
 	}
+
 }

@@ -30,17 +30,20 @@ public class GenericPersonInstantiator : MonoBehaviour {
 		}
 		
 		gpParent = GameObject.Find("Humanity");
-		
-		for (int i = 0;i<20;i++){
-			GameObject obj = Instantiate(gpPrefab,Vector3.zero,Quaternion.identity);
-			obj.GetComponent<GenericPersonMov>().InstantiateGenericPerson(this.GetStartAndEndPosition(true));
-			obj.transform.SetParent(gpParent.transform);
-		}
-		for (int i = 0;i<20;i++){
-			GameObject obj = Instantiate(gpPrefab,Vector3.zero,Quaternion.identity);
-			obj.GetComponent<GenericPersonMov>().InstantiateGenericPerson(this.GetStartAndEndPosition(false));
-			obj.transform.SetParent(gpParent.transform);
-		}
+
+		GameObject obj = Instantiate(gpPrefab,Vector3.zero,Quaternion.identity);
+		obj.GetComponent<GenericPersonMov>().InstantiateGenericPerson(this.GetStartAndEndPosition(true));
+		obj.transform.SetParent(gpParent.transform);
+		// for (int i = 0;i<20;i++){
+		// 	GameObject obj = Instantiate(gpPrefab,Vector3.zero,Quaternion.identity);
+		// 	obj.GetComponent<GenericPersonMov>().InstantiateGenericPerson(this.GetStartAndEndPosition(true));
+		// 	obj.transform.SetParent(gpParent.transform);
+		// }
+		// for (int i = 0;i<20;i++){
+		// 	GameObject obj = Instantiate(gpPrefab,Vector3.zero,Quaternion.identity);
+		// 	obj.GetComponent<GenericPersonMov>().InstantiateGenericPerson(this.GetStartAndEndPosition(false));
+		// 	obj.transform.SetParent(gpParent.transform);
+		// }
 	}
 
 	///<summary>

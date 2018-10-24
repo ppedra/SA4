@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b35bc798a2a6ef4d9453c13abd6389d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 0
   randomRange: 0.5
   shouldBeMoving: 0
   hasBeenWhistle: 0
