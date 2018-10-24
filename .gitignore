@@ -48,3 +48,7 @@ sysinfo.txt
 
 
 # End of https://www.gitignore.io/api/code,unity
+
+#no huge photoshop file
+*.psd
+*.psd.meta
