@@ -6,6 +6,8 @@ using UnityEngine;
 public class AreaScript : MonoBehaviour {
 
 	BoxCollider2D col;
+	public float positiveYMargin = 0;
+	public float negativeYMargin = 0;
 	void Start () {
 		col = this.GetComponent<BoxCollider2D>();
 	}
@@ -18,7 +20,7 @@ public class AreaScript : MonoBehaviour {
 		Vector3 position =  this.transform.position;
 
 		float randomx = position.x + Random.Range(-size.x,size.x);
-		float randomy = position.y + Random.Range(-size.y,size.y);
+		float randomy = position.y + Random.Range(-size.y+negativeYMargin,size.y-positiveYMargin);
 		
 		return new Vector2(randomx, randomy);
 	}

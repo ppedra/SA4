@@ -7,6 +7,7 @@ public class GenericPersonMov : MonoBehaviour {
 	public float speed = 3;
 	[Range(0f,2f)]
 	public float randomRange;
+	public bool shouldBeMoving;
 
 	private Rigidbody2D _rigidbody2D;
 
@@ -33,6 +34,7 @@ public class GenericPersonMov : MonoBehaviour {
 		finalPosition = positions[1];
 
 		this.transform.position = positions[0];
+		shouldBeMoving = true;
 		MoveToPosition(positions[1]);
 
 	}
@@ -63,6 +65,7 @@ public class GenericPersonMov : MonoBehaviour {
 			
 			yield return null; //skip a frame
 		}
+		shouldBeMoving = false;
 	}
 
 	public void StopCoroutinesHere(){

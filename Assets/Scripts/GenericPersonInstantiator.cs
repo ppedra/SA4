@@ -6,32 +6,58 @@ public class GenericPersonInstantiator : MonoBehaviour {
 
 	AreaScript[] areas;
 	[Space(10)]
-	public GameObject genericPersonPrefab;
-	public GameObject genericPersonParent; //not god
+	public GameObject gpPrefab;
+	public GameObject gpParent; //not god
+
+	// [Space(10)]
+	[Header("Areas to instantiate")]
+	private GameObject[] placesToInstantiate;
+	public GameObject leftAreaToInstantiate;
+	public GameObject rightAreaToInstantiate;
+	public GameObject middleAreaToInstantiate;
 
 	void Start () {
-		GameObject[] objs = GameObject.FindGameObjectsWithTag("TriggersOutsideMap");
+		GameObject[] objs = {leftAreaToInstantiate,rightAreaToInstantiate,middleAreaToInstantiate};
 		areas = new AreaScript[objs.Length];
 		for (int i = 0; i < objs.Length; i++){
 			areas[i] = objs[i].GetComponent<AreaScript>();
 		}
 		Debug.Log("AreaScript.lenght= " + areas.Length);
 
-		genericPersonParent = GameObject.Find("Humanity");
+		for (int i = 0; i < areas.Length; i++){
+			Debug.Log(areas[i].gameObject.name);
+		}
+
+
 		
+		gpParent = GameObject.Find("Humanity");
 		
 		for (int i = 0;i<20;i++){
-			GameObject obj = Instantiate(genericPersonPrefab,Vector3.zero,Quaternion.identity);
-			obj.GetComponent<GenericPersonMov>().InstantiateGenericPerson(this.GetStartAndEndPosition());
-			obj.transform.SetParent(genericPersonParent.transform	);
+			GameObject obj = Instantiate(gpPrefab,Vector3.zero,Quaternion.identity);
+			obj.GetComponent<GenericPersonMov>().InstantiateGenericPerson(this.GetStartAndEndPosition(true));
+			obj.transform.SetParent(gpParent.transform);
 		}
+		for (int i = 0;i<20;i++){
+			GameObject obj = Instantiate(gpPrefab,Vector3.zero,Quaternion.identity);
+			obj.GetComponent<GenericPersonMov>().InstantiateGenericPerson(this.GetStartAndEndPosition(false));
+			obj.transform.SetParent(gpParent.transform);
+		}
+	}
+
+	///<summary>
+	/// return 2 vec3 with start and end position, inside lateral areas, 
+	/// for the generic person to move.
+	///</summary>
+	private Vector3[] GetStartAndEndPosition(){
+		return GetStartAndEndPosition(false);
 	}
 	
 	///<summary>
 	/// return 2 vec3 with start and end position for the generic person
-	/// to move
+	/// to move.
 	///</summary>
-	public Vector3[] GetStartAndEndPosition(){
+	///<param name="InstantiateInMiddle"> should instantiate in middle of map </param>
+	private Vector3[] GetStartAndEndPosition(bool InstantiateInMiddle){
 		Vector3 startPos;
 		Vector3 endPos;
 
@@ -43,6 +69,10 @@ public class GenericPersonInstantiator : MonoBehaviour {
 		}else{
 			startPos = areas[1].GetRandomPositionInsideArea();
 			endPos = areas[0].GetRandomPositionInsideArea();
+		}
+		// get point inside map area
+		if (InstantiateInMiddle){
+			startPos = areas[2].GetRandomPositionInsideArea();
 		}
 
 		return new Vector3[] {startPos,endPos};
