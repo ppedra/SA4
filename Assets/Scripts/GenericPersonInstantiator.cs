@@ -23,17 +23,18 @@ public class GenericPersonInstantiator : MonoBehaviour {
 			areas[i] = objs[i].GetComponent<AreaScript>();
 		}
 		
-		Debug.Log("AreaScript.lenght= " + areas.Length);
-		for (int i = 0; i < areas.Length; i++){
-			Debug.Log(areas[i].gameObject.name);
-			Debug.Log(areas[i].GetRandomPositionInsideArea());
-		}
+		// Debug.Log("AreaScript.lenght= " + areas.Length);
+		// for (int i = 0; i < areas.Length; i++){
+		// 	Debug.Log(areas[i].gameObject.name);
+		// 	Debug.Log(areas[i].GetRandomPositionInsideArea());
+		// }
 		
 		gpParent = GameObject.Find("Humanity");
 
 		GameObject obj = Instantiate(gpPrefab,Vector3.zero,Quaternion.identity);
-		obj.GetComponent<GenericPersonMov>().InstantiateGenericPerson(this.GetStartAndEndPosition(true));
+		obj.GetComponent<GPStateMachineHandler>().InstantiateGenericPerson(this.GetStartAndEndPosition(false));
 		obj.transform.SetParent(gpParent.transform);
+		obj.SetActive(true);
 		// for (int i = 0;i<20;i++){
 		// 	GameObject obj = Instantiate(gpPrefab,Vector3.zero,Quaternion.identity);
 		// 	obj.GetComponent<GenericPersonMov>().InstantiateGenericPerson(this.GetStartAndEndPosition(true));

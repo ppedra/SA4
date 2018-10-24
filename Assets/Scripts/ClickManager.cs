@@ -19,6 +19,8 @@ public class ClickManager : MonoBehaviour {
 	public bool redFlagClicked;
 	public bool yellowFlagClicked;
 	public bool greenFlagClicked;
+	[Header("Whistle bool")]
+	public bool whistleClicked;
 
 	IEnumerator movimentControlCoroutine;
 
@@ -55,8 +57,16 @@ public class ClickManager : MonoBehaviour {
 				//place flag
 				Debug.Log("Move Player to place the flag!");
 				MovePlayerToPlaceFlag(FlagColor.green,worldPoint);
-				
-				
+			
+			} else if (whistleClicked && !isTouchOverUi){
+				//raycast to get generic person
+				RaycastHit2D hit = Physics2D.Raycast(worldPoint, Vector2.zero,100);
+				if (hit){
+					if (hit.collider.gameObject.tag == "GenericPerson"){
+						Debug.Log("inside if statement: " + hit.collider.gameObject.name);
+						MovePlayerToWhistle(worldPoint,hit.collider.gameObject);
+					}					
+				}
 			} else if (!isTouchOverUi) {
 				//lifeguard walk if mouse/click is not over the ui
 				Debug.Log("Move Player!");
@@ -65,6 +75,7 @@ public class ClickManager : MonoBehaviour {
 		}
 	}
 
+	#region Flag coroutine
 	void MovePlayerToPlaceFlag(FlagColor color,Vector2 worldPoint){
 		/*
 		 * move player (if needed, this is checked in player moviment coroutine)
@@ -86,6 +97,34 @@ public class ClickManager : MonoBehaviour {
 		// this.RedFlagButtonClick();
 		ResetAllFlagClickedButThis(color);
 	}
+	#endregion
+	
+	#region Whistle coroutine
+	void MovePlayerToWhistle(Vector2 worldPoint,GameObject objectToWhistleAt){
+		/*
+		 * move player (if needed, this is checked in player moviment coroutine)
+		 * to click position and place a flag there
+		 */
+		movimentControlCoroutine = MovePlayerToWhistleCoroutine(worldPoint,objectToWhistleAt);
+		StartCoroutine(movimentControlCoroutine);
+	}
+	
+
+	IEnumerator MovePlayerToWhistleCoroutine(Vector2 worldPoint,GameObject objectToWhistleAt){
+		//wait for move player to position
+		yield return playerMoviment.MoveToPositionNORAYCAST(worldPoint,Utils.Values.distanceToWhistle);
+		// yield return playerMoviment.MoveToPosition(worldPoint,Utils.Values.distanceToWhistle);
+		
+		//skip a frame
+		yield return null;
+	
+		objectToWhistleAt.GetComponent<Animator>().SetTrigger("whistleHitTrigger");
+
+		yield return null;
+
+		WhistleButtonClick();
+	}
+	#endregion
 
 	private void ReclickRespectiveFlag(FlagColor color){
 		if (color == FlagColor.red){
@@ -126,6 +165,10 @@ public class ClickManager : MonoBehaviour {
 	public void YellowFlagButtonClick() {
 		yellowFlagClicked = !yellowFlagClicked;
 		// Debug.Log("yellowFlagClicked:" + yellowFlagClicked);
+	}
+	public void WhistleButtonClick() {
+		whistleClicked = !whistleClicked;
+		// Debug.Log("whistleClicked:" + whistleClicked);
 	}
 	public void FlagButtonClick(FlagColor color){
 		ResetAllFlagClickedButThis(color);

@@ -26,7 +26,11 @@ public class OnUIClick : MonoBehaviour {
 	public void YellowFlagButtonClick() {
 		// clickManager.YellowFlagButtonClick();
 		clickManager.FlagButtonClick(Utils.FlagColor.yellow);
+	}
 
+	public void WhistleButtonClick() {
+		// clickManager.GreenFlagButtonClick();
+		clickManager.WhistleButtonClick();
 	}
 
 
