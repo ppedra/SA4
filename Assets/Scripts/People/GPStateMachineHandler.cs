@@ -44,6 +44,7 @@ public class GPStateMachineHandler : MonoBehaviour {
 
 	public Vector3 GetDestination(){
 		return finalPosition;
+		// return new Vector3(3f,3f,0f);
 	}
 	public float GetSpeed(){
 		return speed;

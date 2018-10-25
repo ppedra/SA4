@@ -46,7 +46,7 @@ public class ClickManager : MonoBehaviour {
 
 			bool isTouchOverUi = EventSystem.current.IsPointerOverGameObject(0);
 			//for the mouse:
-			// isTouchOverUi = isTouchOverUi && EventSystem.current.IsPointerOverGameObject();
+			isTouchOverUi = isTouchOverUi || EventSystem.current.IsPointerOverGameObject();
 
 			if (redFlagClicked && !isTouchOverUi){
 				//place flag
@@ -65,6 +65,10 @@ public class ClickManager : MonoBehaviour {
 					if (hit.collider.gameObject.tag == "GenericPerson"){
 						Debug.Log("inside if statement: " + hit.collider.gameObject.name);
 						MovePlayerToWhistle(worldPoint,hit.collider.gameObject);
+					} else {
+						//TODO: fix this 'cancel whistle moviment'...
+						playerMoviment.MoveToPosition(worldPoint);
+						WhistleButtonClick();
 					}					
 				}
 			} else if (!isTouchOverUi) {

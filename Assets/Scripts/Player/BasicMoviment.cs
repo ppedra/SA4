@@ -59,7 +59,7 @@ public class BasicMoviment : MonoBehaviour {
 		while (t <= lim){
 			t += (Time.fixedDeltaTime * WalkingSpeed) / m_dist;
 			rigidBody2D.MovePosition (Vector3.Lerp (start, target, t));
-			Debug.Log("t: " + t + " - lim: " + lim);
+			// Debug.Log("t: " + t + " - lim: " + lim);
 			yield return null; //skip a frame
 		}
 	}
