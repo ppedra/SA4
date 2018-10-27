@@ -26,7 +26,8 @@ public class FlagInstantiator : MonoBehaviour {
 		if (instance == null){
 			instance = this;
 		} 	
-
+	}
+	private void Start() {
 		if (areasToPlaceFlag == null){
 			areasToPlaceFlag = GameObject.FindGameObjectsWithTag("SeaArea");
 		}
@@ -34,8 +35,15 @@ public class FlagInstantiator : MonoBehaviour {
 		for(int i=0; i< boundsOfAreasToPlaceFlag.Length; i++){
 			boundsOfAreasToPlaceFlag[i] = areasToPlaceFlag[i].GetComponent<BoxCollider2D>();
 		}
-		
 	}
+
+	///<summary>
+	/// Get clicked area's correct Utils.FlagColor for flag placement.
+	///</summary>
+	///<returns>
+	/// Return Utils.FlagColor.none if clicked outside flag area
+	///</returns>
+	///<param name = "pos">world position to cast a raycast to </param>
 	private Utils.FlagColor GetClickedAreaColor(Vector2 pos){
 		Ray ray = new Ray(pos,Vector2.one);
 		foreach (BoxCollider2D bound in boundsOfAreasToPlaceFlag){
@@ -48,10 +56,10 @@ public class FlagInstantiator : MonoBehaviour {
 	}
 	
 	///<summary>
-	/// instantiate a flag in the position the player wants, checks if it is the right position and instantiate
-	/// correct prefab (correct or wrong flag)
+	/// instantiate a flag orefab in the position wanted by player, checks if it is the right position and instantiate
+	/// correct prefab (right or wrong flag)
 	///</summary>
-	///<param name="color">player's intention</param>
+	///<param name="color">players intention</param>
 	///<param name="pos">world position</param>
 	public void InstantiateFlag(FlagColor color,Vector2 pos){
 		Utils.FlagColor correctColor = GetClickedAreaColor(pos);
@@ -68,7 +76,6 @@ public class FlagInstantiator : MonoBehaviour {
 			return;
 		}
 		
-
 		if (color == FlagColor.red){
 			Instantiate(redFlagPrefab,pos,Quaternion.identity);
 		}else if (color == FlagColor.green){
