@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212714830975364678}
   m_Layer: 0
   m_Name: FlagRedGO
-  m_TagString: Untagged
+  m_TagString: Flag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
