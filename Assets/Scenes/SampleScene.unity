@@ -1979,12 +1979,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   redFlagPrefab: {fileID: 1149040050169454, guid: b7f64db9fdb0f1047ab08f8f239e98a7,
     type: 2}
-  redFlagPrefabWrong: {fileID: 0}
+  redFlagPrefabWrong: {fileID: 1473478061542236, guid: 523b03bb467a6fc4eb79b95150d85edb,
+    type: 2}
   yellowPlagPrefab: {fileID: 0}
   yellowPlagPrefabWrong: {fileID: 0}
   greenFlagPrefab: {fileID: 1360519361537298, guid: a8363ced323813443b8a2e41c90786f3,
     type: 2}
-  greenFlagPrefabWrong: {fileID: 0}
+  greenFlagPrefabWrong: {fileID: 1479819230668950, guid: 10b811af29ee8914c867ba47203de1b6,
+    type: 2}
   areasToPlaceFlag:
   - {fileID: 821381041}
   - {fileID: 658790871}

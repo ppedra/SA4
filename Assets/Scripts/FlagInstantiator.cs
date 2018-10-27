@@ -56,7 +56,7 @@ public class FlagInstantiator : MonoBehaviour {
 	public void InstantiateFlag(FlagColor color,Vector2 pos){
 		Utils.FlagColor correctColor = GetClickedAreaColor(pos);
 		
-		/*
+		
 		if (color != correctColor){
 			if (color == FlagColor.red){
 				Instantiate(redFlagPrefabWrong,pos,Quaternion.identity);
@@ -67,7 +67,7 @@ public class FlagInstantiator : MonoBehaviour {
 			}
 			return;
 		}
-		 */
+		
 
 		if (color == FlagColor.red){
 			Instantiate(redFlagPrefab,pos,Quaternion.identity);
@@ -76,7 +76,7 @@ public class FlagInstantiator : MonoBehaviour {
 		}else if (color == FlagColor.yellow){
 			Instantiate(yellowPlagPrefab,pos,Quaternion.identity);
 		}else{
-			Debug.LogError("Should never me here. Where? " + this.name);
+			Debug.LogError("Should never be here. Where? " + this.name);
 		}
 	}
 
