@@ -4,29 +4,40 @@ using UnityEngine;
 
 public class GenericPersonInstantiator : MonoBehaviour {
 
-	AreaScript[] areas;
+	// AreaScript[] areas;
+
 	[Space(10)]
+	//generic person walking arround
 	public GameObject gpPrefab;
+	//bathing person. start in the sea
+	public GameObject bpPrefab;
 	public GameObject gpParent; //not god
 
 	// [Space(10)]
 	[Header("Areas to instantiate")]
-	private GameObject[] placesToInstantiate;
-	// public GameObject leftAreaToInstantiate;
-	// public GameObject rightAreaToInstantiate;
-	// public GameObject middleAreaToInstantiate;
+	// public GameObject[] placesToInstantiate;
+	// public Dictionary<string,AreaScript> areaToInstantiate;
+	public AreaScript AreaLeft;
+	public AreaScript AreaRight;
+	public AreaScript AreaInsideSand;
+	public AreaScript AreaInsideSea;
+
+
 
 	void Start () {
-		GameObject[] objs = GameObject.FindGameObjectsWithTag("AreasToInstantiate");	
-		areas = new AreaScript[objs.Length];
-		for (int i = 0; i < objs.Length; i++){
-			areas[i] = objs[i].GetComponent<AreaScript>();
-		}
+		// GameObject[] placesToInstantiate = GameObject.FindGameObjectsWithTag("AreasToInstantiate");	
+		// areas = new AreaScript[placesToInstantiate.Length];
+
+		// // areaToInstantiate = new Dictionary<string, AreaScript>();
+		// for (int i = 0; i < placesToInstantiate.Length; i++){
+		// 	// areas[i] = placesToInstantiate[i].GetComponent<AreaScript>();
+		// 	areaToInstantiate.Add(placesToInstantiate[i].name,placesToInstantiate[i].GetComponent<AreaScript>());
+		// }
 		
 		// Debug.Log("AreaScript.lenght= " + areas.Length);
 		// for (int i = 0; i < areas.Length; i++){
-		// 	Debug.Log(areas[i].gameObject.name);
-		// 	Debug.Log(areas[i].GetRandomPositionInsideArea());
+		// 	// Debug.Log(areaToInstantiate[i].gameObject.name);
+		// 	// Debug.Log(areas[i].GetRandomPositionInsideArea());
 		// }
 		
 		gpParent = GameObject.Find("Humanity");
@@ -47,6 +58,31 @@ public class GenericPersonInstantiator : MonoBehaviour {
 			obj.transform.SetParent(gpParent.transform);
 			obj.SetActive(true);
 		}
+		for (int i = 0;i<20;i++){
+			obj = Instantiate(bpPrefab,Vector3.zero,Quaternion.identity);
+			obj.GetComponent<BPStateMachineHandler>().InstantiatePerson(this.GetStartPositionAtSea());
+			obj.transform.SetParent(gpParent.transform);
+			obj.SetActive(true);
+		}
+	}
+
+	///<summary>
+	/// intantiate generic person
+	/// for the generic person to move.
+	///</summary>
+	public void InstantiateGP(){
+
+	}
+
+	///<summary>
+	/// return position inside sea area
+	///</summary>
+	public Vector3[] GetStartPositionAtSea(){
+		Vector3[] positions = this.GetStartAndEndPosition(true);
+		//change start position for inside the sea
+		positions[0] = AreaInsideSea.GetRandomPositionInsideArea();
+		Debug.Log(positions[0]);
+		return positions;
 	}
 
 	///<summary>
@@ -69,17 +105,19 @@ public class GenericPersonInstantiator : MonoBehaviour {
 		int option = Random.Range(0,2);
 		
 		if (option==0){
-			startPos = areas[0].GetRandomPositionInsideArea();
-			endPos = areas[1].GetRandomPositionInsideArea();
+			startPos = AreaRight.GetRandomPositionInsideArea();
+			endPos = AreaLeft.GetRandomPositionInsideArea();
 		}else{
-			startPos = areas[1].GetRandomPositionInsideArea();
-			endPos = areas[0].GetRandomPositionInsideArea();
+			startPos = AreaLeft.GetRandomPositionInsideArea();
+			endPos = AreaRight.GetRandomPositionInsideArea();
 		}
 		// get point inside map area
 		if (InstantiateInMiddle){
-			startPos = areas[2].GetRandomPositionInsideArea();
+			startPos = AreaInsideSand.GetRandomPositionInsideArea();
 		}
 
 		return new Vector3[] {startPos,endPos};
 	}
+
+	
 }
