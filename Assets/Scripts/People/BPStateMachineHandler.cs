@@ -2,18 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BPStateMachineHandler : MonoBehaviour {
+public class BPStateMachineHandler : GPStateMachineHandler {
 
-	
-	public Vector3 initialPosition;
-	public Vector3 finalPosition;
-	
-	
-	public void InstantiatePerson(Vector3[] positions){
-		initialPosition = positions[0];
-		finalPosition = positions[1];
 
-		this.transform.position = positions[0];
-		// this.transform.position = new Vector3(0f,0f,0f);
+	///<summary>
+	/// return a position inside sand area for the bathing person to go,
+	/// based on the current position, leaving the sand
+	///</summary>
+	///<returns> position to go leaving the sea </returns>
+	public Vector3 GetPositionInBeachToExit(){
+		//random amount to create variation
+		float rx = 0f;
+		float ry = 0f;
+
+		Vector3 pos = new Vector3(this.initialPosition.x + rx, this.finalPosition.y + ry);
+		
+		return pos;
 	}
+
 }

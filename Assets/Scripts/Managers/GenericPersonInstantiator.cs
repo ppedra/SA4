@@ -43,18 +43,18 @@ public class GenericPersonInstantiator : MonoBehaviour {
 		gpParent = GameObject.Find("Humanity");
 
 		GameObject obj = Instantiate(gpPrefab,Vector3.zero,Quaternion.identity);
-		obj.GetComponent<GPStateMachineHandler>().InstantiateGenericPerson(this.GetStartAndEndPosition(false));
+		obj.GetComponent<GPStateMachineHandler>().InstantiatePerson(this.GetStartAndEndPosition(false));
 		obj.transform.SetParent(gpParent.transform);
 		obj.SetActive(true);
 		for (int i = 0;i<20;i++){
 			obj = Instantiate(gpPrefab,Vector3.zero,Quaternion.identity);
-			obj.GetComponent<GPStateMachineHandler>().InstantiateGenericPerson(this.GetStartAndEndPosition(true));
+			obj.GetComponent<GPStateMachineHandler>().InstantiatePerson(this.GetStartAndEndPosition(true));
 			obj.transform.SetParent(gpParent.transform);
 			obj.SetActive(true);
 		}
 		for (int i = 0;i<20;i++){
 			obj = Instantiate(gpPrefab,Vector3.zero,Quaternion.identity);
-			obj.GetComponent<GPStateMachineHandler>().InstantiateGenericPerson(this.GetStartAndEndPosition(false));
+			obj.GetComponent<GPStateMachineHandler>().InstantiatePerson(this.GetStartAndEndPosition(false));
 			obj.transform.SetParent(gpParent.transform);
 			obj.SetActive(true);
 		}
@@ -115,9 +115,7 @@ public class GenericPersonInstantiator : MonoBehaviour {
 		if (InstantiateInMiddle){
 			startPos = AreaInsideSand.GetRandomPositionInsideArea();
 		}
-
 		return new Vector3[] {startPos,endPos};
 	}
-
 	
 }
