@@ -40,5 +40,9 @@ public class GPStateMachineHandler : MonoBehaviour {
 		return speed;
 	}
 
+	public void ResetMoviment(){
+		this.InstantiatePerson(PersonInstantiator.instance.GetStartAndEndPosition(false));
+	}
+
 
 }

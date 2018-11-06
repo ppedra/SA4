@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GenericPersonInstantiator : MonoBehaviour {
+public class PersonInstantiator : MonoBehaviour {
 
 	// AreaScript[] areas;
 
@@ -22,9 +22,14 @@ public class GenericPersonInstantiator : MonoBehaviour {
 	public AreaScript AreaInsideSand;
 	public AreaScript AreaInsideSea;
 
+	public static PersonInstantiator instance;
 
 
 	void Start () {
+		if (instance == null){
+			instance = this;
+		}
+		
 		// GameObject[] placesToInstantiate = GameObject.FindGameObjectsWithTag("AreasToInstantiate");	
 		// areas = new AreaScript[placesToInstantiate.Length];
 
@@ -46,13 +51,13 @@ public class GenericPersonInstantiator : MonoBehaviour {
 		obj.GetComponent<GPStateMachineHandler>().InstantiatePerson(this.GetStartAndEndPosition(false));
 		obj.transform.SetParent(gpParent.transform);
 		obj.SetActive(true);
-		for (int i = 0;i<20;i++){
+		for (int i = 0;i<30;i++){
 			obj = Instantiate(gpPrefab,Vector3.zero,Quaternion.identity);
 			obj.GetComponent<GPStateMachineHandler>().InstantiatePerson(this.GetStartAndEndPosition(true));
 			obj.transform.SetParent(gpParent.transform);
 			obj.SetActive(true);
 		}
-		for (int i = 0;i<20;i++){
+		for (int i = 0;i<10;i++){
 			obj = Instantiate(gpPrefab,Vector3.zero,Quaternion.identity);
 			obj.GetComponent<GPStateMachineHandler>().InstantiatePerson(this.GetStartAndEndPosition(false));
 			obj.transform.SetParent(gpParent.transform);
@@ -89,7 +94,7 @@ public class GenericPersonInstantiator : MonoBehaviour {
 	/// return 2 vec3 with start and end position, inside lateral areas, 
 	/// for the generic person to move.
 	///</summary>
-	private Vector3[] GetStartAndEndPosition(){
+	public Vector3[] GetStartAndEndPosition(){
 		return GetStartAndEndPosition(false);
 	}
 	
@@ -98,7 +103,7 @@ public class GenericPersonInstantiator : MonoBehaviour {
 	/// to move.
 	///</summary>
 	///<param name="InstantiateInMiddle"> should instantiate in middle of map </param>
-	private Vector3[] GetStartAndEndPosition(bool InstantiateInMiddle){
+	public Vector3[] GetStartAndEndPosition(bool InstantiateInMiddle){
 		Vector3 startPos;
 		Vector3 endPos;
 
