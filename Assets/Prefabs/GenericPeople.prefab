@@ -186,8 +186,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 380600f0debef9d4ca7c6354b7bf5af0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2.4
-  randomRange: 0.5
+  speed: 3
+  randomRange: 1
   initialPosition: {x: 0, y: 0, z: 0}
   finalPosition: {x: 0, y: 0, z: 0}
 --- !u!212 &212181799299564300

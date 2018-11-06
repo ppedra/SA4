@@ -13,9 +13,6 @@ public class GPStateMachineHandler : MonoBehaviour {
 	public Vector3 initialPosition;
 	public Vector3 finalPosition;
 
-	private void Awake() {
-	
-	}
 
 	void Start() {
 		speed = speed + Random.Range(-randomRange,randomRange);
@@ -40,6 +37,10 @@ public class GPStateMachineHandler : MonoBehaviour {
 		return speed;
 	}
 
+	///<summary>
+	/// get a position for recicle the person object. should be call after the person get
+	/// to the end of their walk
+	///</summary>
 	public void ResetMoviment(){
 		this.InstantiatePerson(PersonInstantiator.instance.GetStartAndEndPosition(false));
 	}

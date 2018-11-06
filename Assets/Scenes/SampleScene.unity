@@ -2057,9 +2057,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1712504419}
+  - component: {fileID: 1712504418}
   - component: {fileID: 1712504417}
   - component: {fileID: 1712504420}
-  - component: {fileID: 1712504418}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2102,6 +2102,9 @@ MonoBehaviour:
   AreaRight: {fileID: 937298254}
   AreaInsideSand: {fileID: 1895047704}
   AreaInsideSea: {fileID: 1358287490}
+  peopleOnSand: 17
+  peopleOffMap: 11
+  peopleInSea: 8
 --- !u!4 &1712504419
 Transform:
   m_ObjectHideFlags: 0

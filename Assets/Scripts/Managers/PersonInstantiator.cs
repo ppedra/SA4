@@ -21,6 +21,10 @@ public class PersonInstantiator : MonoBehaviour {
 
 	public static PersonInstantiator instance;
 
+	[Header("Person #")]
+	public int peopleOnSand;
+	public int peopleOffMap;
+	public int peopleInSea;
 
 	void Start () {
 		if (instance == null){
@@ -29,8 +33,8 @@ public class PersonInstantiator : MonoBehaviour {
 		
 		gpParent = GameObject.Find("Humanity");
 		
-		this.InstantiateGP(30,10,gpParent);
-		this.InstantiateBP(20,gpParent);
+		this.InstantiateGP(peopleOnSand,peopleOffMap,gpParent);
+		this.InstantiateBP(peopleInSea,gpParent);
 	}
 
 	///<summary>
@@ -41,7 +45,7 @@ public class PersonInstantiator : MonoBehaviour {
 	///<param name="newParent"> new parent in project hierarchy</param>
 	private void InstantiateGP(int onSand, int offMap,GameObject newParent){
 		GameObject obj;
-		for (int i = 0;i<onSand;i++){
+		for (int i = 0; i<onSand; i++){
 			obj = Instantiate(gpPrefab,Vector3.zero,Quaternion.identity);
 			obj.GetComponent<GPStateMachineHandler>().InstantiatePerson(this.GetStartAndEndPosition(true));
 			if (newParent != null){
@@ -49,7 +53,7 @@ public class PersonInstantiator : MonoBehaviour {
 			}			
 			obj.SetActive(true);
 		}
-		for (int i = 0;i<offMap;i++){
+		for (int i = 0; i<offMap; i++){
 			obj = Instantiate(gpPrefab,Vector3.zero,Quaternion.identity);
 			obj.GetComponent<GPStateMachineHandler>().InstantiatePerson(this.GetStartAndEndPosition(false));
 			if (newParent != null){
@@ -65,7 +69,7 @@ public class PersonInstantiator : MonoBehaviour {
 	///<param name="onWater"> num of people instantiate on sand area</param>
 	///<param name="newParent"> new parent in project hierarchy</param>
 	private void InstantiateBP(int onWater,GameObject newParent){
-		for (int i = 0;i<20;i++){
+		for (int i = 0;i<onWater;i++){
 			GameObject obj = Instantiate(bpPrefab,Vector3.zero,Quaternion.identity);
 			obj.GetComponent<BPStateMachineHandler>().InstantiatePerson(this.GetStartPositionAtSea());
 			if (newParent != null){
