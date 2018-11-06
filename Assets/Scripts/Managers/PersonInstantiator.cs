@@ -4,19 +4,16 @@ using UnityEngine;
 
 public class PersonInstantiator : MonoBehaviour {
 
-	// AreaScript[] areas;
-
 	[Space(10)]
 	//generic person walking arround
 	public GameObject gpPrefab;
 	//bathing person. start in the sea
 	public GameObject bpPrefab;
-	public GameObject gpParent; //not god
+	//parent object for persons
+	public GameObject gpParent; 
 
 	// [Space(10)]
 	[Header("Areas to instantiate")]
-	// public GameObject[] placesToInstantiate;
-	// public Dictionary<string,AreaScript> areaToInstantiate;
 	public AreaScript AreaLeft;
 	public AreaScript AreaRight;
 	public AreaScript AreaInsideSand;
@@ -30,54 +27,54 @@ public class PersonInstantiator : MonoBehaviour {
 			instance = this;
 		}
 		
-		// GameObject[] placesToInstantiate = GameObject.FindGameObjectsWithTag("AreasToInstantiate");	
-		// areas = new AreaScript[placesToInstantiate.Length];
-
-		// // areaToInstantiate = new Dictionary<string, AreaScript>();
-		// for (int i = 0; i < placesToInstantiate.Length; i++){
-		// 	// areas[i] = placesToInstantiate[i].GetComponent<AreaScript>();
-		// 	areaToInstantiate.Add(placesToInstantiate[i].name,placesToInstantiate[i].GetComponent<AreaScript>());
-		// }
-		
-		// Debug.Log("AreaScript.lenght= " + areas.Length);
-		// for (int i = 0; i < areas.Length; i++){
-		// 	// Debug.Log(areaToInstantiate[i].gameObject.name);
-		// 	// Debug.Log(areas[i].GetRandomPositionInsideArea());
-		// }
-		
 		gpParent = GameObject.Find("Humanity");
+		
+		this.InstantiateGP(30,10,gpParent);
+		this.InstantiateBP(20,gpParent);
+	}
 
-		GameObject obj = Instantiate(gpPrefab,Vector3.zero,Quaternion.identity);
-		obj.GetComponent<GPStateMachineHandler>().InstantiatePerson(this.GetStartAndEndPosition(false));
-		obj.transform.SetParent(gpParent.transform);
-		obj.SetActive(true);
-		for (int i = 0;i<30;i++){
+	///<summary>
+	/// intantiate generic person on and off map and set parent
+	///</summary>
+	///<param name="onSand"> num of people instantiate on sand area</param>
+	///<param name="offMap"> num of people instantiate on outside the map</param>
+	///<param name="newParent"> new parent in project hierarchy</param>
+	private void InstantiateGP(int onSand, int offMap,GameObject newParent){
+		GameObject obj;
+		for (int i = 0;i<onSand;i++){
 			obj = Instantiate(gpPrefab,Vector3.zero,Quaternion.identity);
 			obj.GetComponent<GPStateMachineHandler>().InstantiatePerson(this.GetStartAndEndPosition(true));
-			obj.transform.SetParent(gpParent.transform);
+			if (newParent != null){
+				obj.transform.SetParent(newParent.transform);
+			}			
 			obj.SetActive(true);
 		}
-		for (int i = 0;i<10;i++){
+		for (int i = 0;i<offMap;i++){
 			obj = Instantiate(gpPrefab,Vector3.zero,Quaternion.identity);
 			obj.GetComponent<GPStateMachineHandler>().InstantiatePerson(this.GetStartAndEndPosition(false));
-			obj.transform.SetParent(gpParent.transform);
-			obj.SetActive(true);
-		}
-		for (int i = 0;i<20;i++){
-			obj = Instantiate(bpPrefab,Vector3.zero,Quaternion.identity);
-			obj.GetComponent<BPStateMachineHandler>().InstantiatePerson(this.GetStartPositionAtSea());
-			obj.transform.SetParent(gpParent.transform);
+			if (newParent != null){
+				obj.transform.SetParent(newParent.transform);
+			}			
 			obj.SetActive(true);
 		}
 	}
 
 	///<summary>
-	/// intantiate generic person
-	/// for the generic person to move.
+	/// intantiate bathing person on water.
 	///</summary>
-	public void InstantiateGP(){
-
+	///<param name="onWater"> num of people instantiate on sand area</param>
+	///<param name="newParent"> new parent in project hierarchy</param>
+	private void InstantiateBP(int onWater,GameObject newParent){
+		for (int i = 0;i<20;i++){
+			GameObject obj = Instantiate(bpPrefab,Vector3.zero,Quaternion.identity);
+			obj.GetComponent<BPStateMachineHandler>().InstantiatePerson(this.GetStartPositionAtSea());
+			if (newParent != null){
+				obj.transform.SetParent(newParent.transform);
+			}
+			obj.SetActive(true);
+		}
 	}
+
 
 	///<summary>
 	/// return position inside sea area
