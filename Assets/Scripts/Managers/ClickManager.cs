@@ -51,12 +51,12 @@ public class ClickManager : MonoBehaviour {
 			if (redFlagClicked && !isTouchOverUi){
 				//place flag
 				Debug.Log("Move Player to place the flag!");
-				MovePlayerToPlaceFlag(FlagColor.red,worldPoint);
+				MovePlayerToPlaceFlag(FlagColor.Red,worldPoint);
 				
 			} else if (greenFlagClicked && !isTouchOverUi){
 				//place flag
 				Debug.Log("Move Player to place the flag!");
-				MovePlayerToPlaceFlag(FlagColor.green,worldPoint);
+				MovePlayerToPlaceFlag(FlagColor.Green,worldPoint);
 			
 			} else if (whistleClicked && !isTouchOverUi){
 				//raycast to get generic person
@@ -131,25 +131,25 @@ public class ClickManager : MonoBehaviour {
 	#endregion
 
 	private void ReclickRespectiveFlag(FlagColor color){
-		if (color == FlagColor.red){
+		if (color == FlagColor.Red){
 			RedFlagButtonClick();
-		}else if (color == FlagColor.green){
+		}else if (color == FlagColor.Green){
 			GreenFlagButtonClick();
-		}else if (color == FlagColor.yellow){
+		}else if (color == FlagColor.Yellow){
 			YellowFlagButtonClick();
 		}
 	}
 
 	private void ResetAllFlagClickedButThis(FlagColor color){
-		if (color == FlagColor.red){
+		if (color == FlagColor.Red){
 			redFlagClicked = !redFlagClicked;
 			yellowFlagClicked = false;
 			greenFlagClicked = false;
-		}else if (color == FlagColor.green){
+		}else if (color == FlagColor.Green){
 			redFlagClicked = false;
 			yellowFlagClicked = false;
 			greenFlagClicked = !greenFlagClicked;
-		}else if (color == FlagColor.yellow){
+		}else if (color == FlagColor.Yellow){
 			redFlagClicked = false;
 			yellowFlagClicked = !yellowFlagClicked;
 			greenFlagClicked = false;

@@ -7,6 +7,6 @@ using UnityEngine;
 ///</summary>
 public class FlagArea : MonoBehaviour {
 
-	public Utils.FlagColor rightFlag = Utils.FlagColor.red;
+	public Utils.FlagColor rightFlag = Utils.FlagColor.Red;
 
 }

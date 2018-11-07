@@ -14,18 +14,18 @@ public class OnUIClick : MonoBehaviour {
 
 	public void RedFlagButtonClick() {
 		// clickManager.RedFlagButtonClick();
-		clickManager.FlagButtonClick(Utils.FlagColor.red);
+		clickManager.FlagButtonClick(Utils.FlagColor.Red);
 
 	}
 	
 	public void GreenFlagButtonClick() {
 		// clickManager.GreenFlagButtonClick();
-		clickManager.FlagButtonClick(Utils.FlagColor.green);
+		clickManager.FlagButtonClick(Utils.FlagColor.Green);
 	}
 	
 	public void YellowFlagButtonClick() {
 		// clickManager.YellowFlagButtonClick();
-		clickManager.FlagButtonClick(Utils.FlagColor.yellow);
+		clickManager.FlagButtonClick(Utils.FlagColor.Yellow);
 	}
 
 	public void WhistleButtonClick() {

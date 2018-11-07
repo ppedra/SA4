@@ -51,40 +51,55 @@ public class FlagInstantiator : MonoBehaviour {
 				return bound.gameObject.GetComponent<FlagArea>().rightFlag;
 			}
 		}
-		return Utils.FlagColor.none;
+		return Utils.FlagColor.None;
 		
 	}
 	
 	///<summary>
-	/// instantiate a flag orefab in the position wanted by player, checks if it is the right position and instantiate
-	/// correct prefab (right or wrong flag)
+	/// instantiate a flag prefab in the position wanted by player, checks if it is the right position, instantiate
+	/// correct prefab (right or wrong flag) and change score based of the level of 'rightfulness'
 	///</summary>
 	///<param name="color">players intention</param>
 	///<param name="pos">world position</param>
 	public void InstantiateFlag(FlagColor color,Vector2 pos){
 		Utils.FlagColor correctColor = GetClickedAreaColor(pos);
 		
-		
+		//TODO: create add or remove correct amount of points!
 		if (color != correctColor){
-			if (color == FlagColor.red){
-				Instantiate(redFlagPrefabWrong,pos,Quaternion.identity);
-			}else if (color == FlagColor.green){
-				Instantiate(greenFlagPrefabWrong,pos,Quaternion.identity);
-			}else if (color == FlagColor.yellow){
-				Instantiate(yellowPlagPrefabWrong,pos,Quaternion.identity);
+			if (color == FlagColor.Red){
+				InstantiateFlagAndAction(redFlagPrefabWrong,pos);
+				// ScoreManager.instance.RemovePoints(Utils.ScoreIntensity.High);
+			}else if (color == FlagColor.Green){
+				InstantiateFlagAndAction(greenFlagPrefabWrong,pos);
+				// if (correctColor == Utils.FlagColor.None){
+				// 	//no big deal. 
+				// 	ScoreManager.instance.RemovePoints(Utils.ScoreIntensity.Low);
+				// }else{
+				// 	//wrong position! people are in danger!
+				// 	ScoreManager.instance.RemovePoints(Utils.ScoreIntensity.High);
+				// }
+			}else if (color == FlagColor.Yellow){
+				InstantiateFlagAndAction(yellowPlagPrefabWrong,pos);
+				// ScoreManager.instance.RemovePoints(Utils.ScoreIntensity.High);
 			}
 			return;
 		}
 		
-		if (color == FlagColor.red){
-			Instantiate(redFlagPrefab,pos,Quaternion.identity);
-		}else if (color == FlagColor.green){
-			Instantiate(greenFlagPrefab,pos,Quaternion.identity);
-		}else if (color == FlagColor.yellow){
-			Instantiate(yellowPlagPrefab,pos,Quaternion.identity);
+		if (color == FlagColor.Red){
+			InstantiateFlagAndAction(redFlagPrefab,pos);
+		}else if (color == FlagColor.Green){
+			InstantiateFlagAndAction(greenFlagPrefab,pos);
+		}else if (color == FlagColor.Yellow){
+			InstantiateFlagAndAction(yellowPlagPrefab,pos);
 		}else{
 			Debug.LogError("Should never be here. Where? " + this.name);
 		}
+	}
+
+	public void InstantiateFlagAndAction (GameObject flagPrefab,Vector3 pos){
+		GameObject.Instantiate(flagPrefab,pos,Quaternion.identity);
+		//TODO: actions for redflag, for exemple. 
+		// make all the peoples in the area go away
 	}
 
 }

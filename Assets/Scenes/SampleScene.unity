@@ -316,7 +316,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 75.850006, y: -80}
+  m_AnchoredPosition: {x: 156.25, y: -423.73157}
   m_SizeDelta: {x: 2, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &414534588
@@ -394,12 +394,12 @@ MonoBehaviour:
     m_Left: 0
     m_Right: 0
     m_Top: 0
-    m_Bottom: 175
+    m_Bottom: -128
   m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 2, y: 1}
-  m_Spacing: {x: 442.3, y: 0}
+  m_Spacing: {x: 965.5, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!114 &435194331
@@ -806,6 +806,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 114714046188542406, guid: 8f0ee2955267f0c4fb406075d2925448,
+        type: 2}
+      propertyPath: randomRange
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f0ee2955267f0c4fb406075d2925448, type: 2}
   m_IsPrefabAsset: 0
@@ -1179,10 +1184,10 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1280, y: 720}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -2060,6 +2065,7 @@ GameObject:
   - component: {fileID: 1712504418}
   - component: {fileID: 1712504417}
   - component: {fileID: 1712504420}
+  - component: {fileID: 1712504421}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2102,9 +2108,9 @@ MonoBehaviour:
   AreaRight: {fileID: 937298254}
   AreaInsideSand: {fileID: 1895047704}
   AreaInsideSea: {fileID: 1358287490}
-  peopleOnSand: 17
-  peopleOffMap: 11
-  peopleInSea: 8
+  peopleOnSand: 30
+  peopleOffMap: 10
+  peopleInSea: 10
 --- !u!4 &1712504419
 Transform:
   m_ObjectHideFlags: 0
@@ -2143,6 +2149,18 @@ MonoBehaviour:
   - {fileID: 821381041}
   - {fileID: 658790871}
   boundsOfAreasToPlaceFlag: []
+--- !u!114 &1712504421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1712504416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c9e59ca63c4d7e4c98b3e949323659e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 0
 --- !u!1 &1755928970
 GameObject:
   m_ObjectHideFlags: 0
@@ -2380,7 +2398,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 520.15, y: -80}
+  m_AnchoredPosition: {x: 1123.75, y: -423.73157}
   m_SizeDelta: {x: 2, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1943481177
