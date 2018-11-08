@@ -12,12 +12,18 @@ public class BPStateMachineHandler : GPStateMachineHandler {
 	///<returns> position to go leaving the sea </returns>
 	public Vector3 GetPositionInBeachToExit(){
 		//random amount to create variation
-		float rx = 0f;
-		float ry = 0f;
+		Vector2 rand = Random.insideUnitSphere*Random.Range(0f,2f);
+		// float rx = 0f;
+		// float ry = 0f;
 
-		Vector3 pos = new Vector3(this.initialPosition.x + rx, this.finalPosition.y + ry);
+		Vector3 pos = new Vector3(this.initialPosition.x + rand.x, this.finalPosition.y + rand.y);
 		
 		return pos;
 	}
+
+	public void InRedFlagArea(){
+		this.GetComponent<Animator>().SetTrigger("Hit");
+	}
+
 
 }

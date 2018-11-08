@@ -9,14 +9,7 @@ public class FlagInstantiator : MonoBehaviour {
 
 	[Header("Flags")]
 	//flags prefabs
-	public GameObject redFlagPrefab;
-	public GameObject redFlagPrefabWrong;
-	[Space(3f)]
-	public GameObject yellowPlagPrefab;
-	public GameObject yellowPlagPrefabWrong;
-	[Space(3f)]
-	public GameObject greenFlagPrefab;
-	public GameObject greenFlagPrefabWrong;
+	public GameObject genericFlag;
 
 	[Header("Areas")]
 	public GameObject[] areasToPlaceFlag;
@@ -64,42 +57,8 @@ public class FlagInstantiator : MonoBehaviour {
 	public void InstantiateFlag(FlagColor color,Vector2 pos){
 		Utils.FlagColor correctColor = GetClickedAreaColor(pos);
 		
-		//TODO: create add or remove correct amount of points!
-		if (color != correctColor){
-			if (color == FlagColor.Red){
-				InstantiateFlagAndAction(redFlagPrefabWrong,pos);
-				// ScoreManager.instance.RemovePoints(Utils.ScoreIntensity.High);
-			}else if (color == FlagColor.Green){
-				InstantiateFlagAndAction(greenFlagPrefabWrong,pos);
-				// if (correctColor == Utils.FlagColor.None){
-				// 	//no big deal. 
-				// 	ScoreManager.instance.RemovePoints(Utils.ScoreIntensity.Low);
-				// }else{
-				// 	//wrong position! people are in danger!
-				// 	ScoreManager.instance.RemovePoints(Utils.ScoreIntensity.High);
-				// }
-			}else if (color == FlagColor.Yellow){
-				InstantiateFlagAndAction(yellowPlagPrefabWrong,pos);
-				// ScoreManager.instance.RemovePoints(Utils.ScoreIntensity.High);
-			}
-			return;
-		}
-		
-		if (color == FlagColor.Red){
-			InstantiateFlagAndAction(redFlagPrefab,pos);
-		}else if (color == FlagColor.Green){
-			InstantiateFlagAndAction(greenFlagPrefab,pos);
-		}else if (color == FlagColor.Yellow){
-			InstantiateFlagAndAction(yellowPlagPrefab,pos);
-		}else{
-			Debug.LogError("Should never be here. Where? " + this.name);
-		}
-	}
-
-	public void InstantiateFlagAndAction (GameObject flagPrefab,Vector3 pos){
-		GameObject.Instantiate(flagPrefab,pos,Quaternion.identity);
-		//TODO: actions for redflag, for exemple. 
-		// make all the peoples in the area go away
+		GameObject flag = Instantiate(genericFlag,pos,Quaternion.identity);
+		flag.GetComponent<Flag>().Init(color, color == correctColor);
 	}
 
 }

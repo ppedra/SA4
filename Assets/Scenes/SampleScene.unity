@@ -121,7 +121,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 84398113}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Humanity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -627,7 +627,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.9500057, y: 0.00000023841858, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -805,11 +805,6 @@ Prefab:
     - target: {fileID: 4263873478445800, guid: 8f0ee2955267f0c4fb406075d2925448, type: 2}
       propertyPath: m_RootOrder
       value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 114714046188542406, guid: 8f0ee2955267f0c4fb406075d2925448,
-        type: 2}
-      propertyPath: randomRange
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f0ee2955267f0c4fb406075d2925448, type: 2}
@@ -1371,7 +1366,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -49
   m_Sprite: {fileID: 21300000, guid: 01ff5c08d3fd6044bbff0e5970dc70b0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1846,6 +1841,48 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1140257832}
   m_CullTransparentMesh: 0
+--- !u!1001 &1235606165
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4561306652617186, guid: 5477c930129d9154a966c7c864272fcc, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -14.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561306652617186, guid: 5477c930129d9154a966c7c864272fcc, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -5.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561306652617186, guid: 5477c930129d9154a966c7c864272fcc, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561306652617186, guid: 5477c930129d9154a966c7c864272fcc, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561306652617186, guid: 5477c930129d9154a966c7c864272fcc, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561306652617186, guid: 5477c930129d9154a966c7c864272fcc, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561306652617186, guid: 5477c930129d9154a966c7c864272fcc, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4561306652617186, guid: 5477c930129d9154a966c7c864272fcc, type: 2}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5477c930129d9154a966c7c864272fcc, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &1358287488
 GameObject:
   m_ObjectHideFlags: 0
@@ -1977,7 +2014,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -49
   m_Sprite: {fileID: 21300000, guid: 01ff5c08d3fd6044bbff0e5970dc70b0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2135,15 +2172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 035b14e9539f2364d9d95c67f44ab450, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  redFlagPrefab: {fileID: 1149040050169454, guid: b7f64db9fdb0f1047ab08f8f239e98a7,
-    type: 2}
-  redFlagPrefabWrong: {fileID: 1473478061542236, guid: 523b03bb467a6fc4eb79b95150d85edb,
-    type: 2}
-  yellowPlagPrefab: {fileID: 0}
-  yellowPlagPrefabWrong: {fileID: 0}
-  greenFlagPrefab: {fileID: 1360519361537298, guid: a8363ced323813443b8a2e41c90786f3,
-    type: 2}
-  greenFlagPrefabWrong: {fileID: 1479819230668950, guid: 10b811af29ee8914c867ba47203de1b6,
+  genericFlag: {fileID: 1798534544368330, guid: 5477c930129d9154a966c7c864272fcc,
     type: 2}
   areasToPlaceFlag:
   - {fileID: 821381041}
@@ -2354,7 +2383,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -49
   m_Sprite: {fileID: 21300000, guid: 01ff5c08d3fd6044bbff0e5970dc70b0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2824,7 +2853,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -49
   m_Sprite: {fileID: 21300000, guid: 01ff5c08d3fd6044bbff0e5970dc70b0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

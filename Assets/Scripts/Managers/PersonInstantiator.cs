@@ -124,4 +124,43 @@ public class PersonInstantiator : MonoBehaviour {
 		return new Vector3[] {startPos,endPos};
 	}
 	
+	///<summary>
+	/// instantiate # num of personPrefabs in area given by AreaScript and set new parent to newParent
+	///</summary>
+	///<param name='personPrefab'>prefab to be instantiate</param>
+	///<param name='area'>area given by script</param>
+	///<param name='num'>numebers of person</param>
+	///<param name='newParent'>game object to be the new parent</param>
+	private void InstantiatePersonToComeToArea(GameObject personPrefab, AreaScript area, int num, GameObject newParent){
+		for (int i = 0;i<num;i++){
+			GameObject obj = Instantiate(personPrefab,Vector3.zero,Quaternion.identity);
+			
+			Vector3[] positions = GetStartAndEndPosition(false);
+			positions[1] = area.GetRandomPositionInsideArea();
+
+			obj.GetComponent<BPStateMachineHandler>().InstantiatePerson(positions);
+			if (newParent != null){
+				obj.transform.SetParent(newParent.transform);
+			}
+			obj.SetActive(true);
+		}
+	}
+
+	///<summary>
+	/// Instantiate # bpPerson in area given by script
+	///</summary>
+	///<param name='area'>AreaScript with info</param>
+	///<param name='num'>num of persons been instantiated in area</param>
+	public void InstantiateBPToComeToArea(AreaScript area,int num){
+		InstantiatePersonToComeToArea(bpPrefab,area,num,gpParent);
+	}
+
+	///<summary>
+	/// Instantiate random(2,5) bpPerson in area given by script
+	///</summary>
+	///<param name='area'>AreaScript with info</param>
+	public void InstantiateBPToComeToArea(AreaScript area){
+		// InstantiatePersonToComeToArea(bpPrefab,area,Random.Range(2,5),gpParent);
+	}
+
 }

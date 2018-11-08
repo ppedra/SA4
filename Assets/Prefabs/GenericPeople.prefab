@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4109522941734182}
   - component: {fileID: 212992334965559724}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4233754607223214}
   - component: {fileID: 212546158324022462}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: alert
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4961246169437630}
   - component: {fileID: 212181799299564300}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: spriteGenericPerson
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  randomRange: 1
+  randomRange: 2
   initialPosition: {x: 0, y: 0, z: 0}
   finalPosition: {x: 0, y: 0, z: 0}
 --- !u!212 &212181799299564300
